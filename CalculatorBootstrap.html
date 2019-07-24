@@ -1,0 +1,102 @@
+<head>
+      <title>CALCULATOR</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+      <script src="./calculatorControllerB.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+
+    <body ng-app="myApp" ng-controller="calculatorController">
+
+      </nav>
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Calculator</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cronometru</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ceas Alarma</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Ora globala</a>
+          </li>
+        </ul>
+      </nav>
+      <br>
+      <div class="col-xs-6 text-left">
+        <div class="d-flex justify-content-center">
+          <div class="whole-container ">
+            <div class="container-fluid text-right col-xs-12">
+              <div class="result-container mb-2">
+                {{firstValue || 0}}
+                <span ng-if="currentModifier" class="col-sm-1">{{currentModifier}}</span>
+                <span ng-if="secondValue" class="col-sm-2">{{secondValue}}</span>
+                <span ng-if="result" class="result-item">={{ result }}</span>
+                <button class="clear-button btn btn-danger btn-lg" ng-click="clearNumbers()">Clear</button>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-3">
+                  <div class="modify-container">
+
+                    <div ng-repeat="mod in modifiers" class="mb-1">
+                      <button class="modify-item btn btn-info btn-block btn-lg"
+                        ng-click="makeSecondValue(mod)">{{ mod }}
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-xs-9">
+                  <div class="number-container">
+                    <div class="container-fluid">
+                      <div class="" style="display: inline" ng-repeat="number in numberArray">
+
+                        <button class="number-item btn btn-dark btn-lg mb-1"
+                          ng-click="showNumber(number)">{{ number }}</button>
+                        <br ng-if="($index + 1)%3==0">
+                        <button class="number-item btn btn-dark btn-lg" ng-if="$idex==9"
+                          ng-click="showNumber('.')">.</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+
+                <button class="result-button btn btn-success float-right" ng-click="doMath()">=</button>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong>Ati efectuat un calcul!<i class="fas fa-thumbs-up"></i>
+      </div>
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    </body>
+
+    </html>
